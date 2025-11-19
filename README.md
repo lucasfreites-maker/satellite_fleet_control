@@ -65,11 +65,11 @@ eg:
     docker run --rm sat --tasks tasks.json --satellites 2 --failure-probs 0.05,0.03
 
 
-The amount of failure of probes given has to be consistent with the amount of satellites given. Otherwise an error ll be risen. 
+The number of failure of probes present has to be consistent with the amount of satellites present, otherwise an error will arise. 
 
-A Summary with payoff alocated, result, general and per satellite is given at the end of the process. 
+A Summary inlcuding information on the payoff allocated; result; general and per satellite is given at the end of the process. 
 
-As we can see the solution is concise and flexible, allowing us to simulate different amounts of satellites each one with a specific failure prob. (A possible improvement here could be having default failure probs so we dont have to pass such a list of arguments)
+As we can see the solution is concise and flexible, allowing us to simulate different amounts of satellites each one with a specific failure probability. (A possible improvement here could be having default failure probabilities so we don´t have to pass such a list of arguments)
 
 ---
 
