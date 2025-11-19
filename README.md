@@ -61,6 +61,7 @@ After building the docker image with the proper dependencies declared in the req
     docker run --rm sat --tasks tasks.json --satellites [amount of satellites] --failure-probs [comma separated prob of failure number]
 
 eg:
+    
     docker run --rm sat --tasks tasks.json --satellites 2 --failure-probs 0.05,0.03
 
 
