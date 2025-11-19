@@ -1,0 +1,99 @@
+services:
+  mqtt:
+    image: eclipse-mosquitto:2
+    container_name: mqtt_broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+  groundstation:
+    build:
+      context: .
+      dockerfile: groundstation/Dockerfile
+    environment:
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+      - SAT_COUNT=7
+    volumes:
+      - ./tasks.json:/app/tasks.json
+    depends_on:
+      - mqtt
+    restart: "no"
+  satellite1:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=1
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+  satellite2:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=2
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+  satellite3:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=3
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+  satellite4:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=4
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+  satellite5:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=5
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+  satellite6:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=6
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+  satellite7:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=7
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped

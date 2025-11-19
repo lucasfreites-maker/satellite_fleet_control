@@ -1,0 +1,8 @@
+[
+  {"name": "high_res_capture", "payoff": 10, "resources": [1,5]},
+  {"name": "sensor_maintenance", "payoff": 1, "resources": [1,2]},
+  {"name": "comms_test", "payoff": 5, "resources": [5,6]},
+  {"name": "fsck_disk_a", "payoff": 2, "resources": [1,6]},
+  {"name": "extra_map", "payoff": 3, "resources": [7]},
+  {"name": "low_priority_img", "payoff": 0.5, "resources": [5]}
+]

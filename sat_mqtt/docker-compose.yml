@@ -1,0 +1,84 @@
+services:
+
+  mqtt:
+    image: eclipse-mosquitto:2
+    container_name: mqtt_broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+
+  groundstation:
+    build:
+      context: .
+      dockerfile: groundstation/Dockerfile
+    depends_on:
+      - mqtt
+    environment:
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+      - SAT_COUNT=5
+    volumes:
+      - ./tasks.json:/app/tasks.json
+    restart: "no"
+
+  sat1:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=1
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+
+  sat2:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=2
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+
+  sat3:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=3
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+
+  sat4:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=4
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+
+  sat5:
+    build:
+      context: .
+      dockerfile: satellite/Dockerfile
+    environment:
+      - SAT_ID=5
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+    depends_on:
+      - mqtt
+    restart: unless-stopped
